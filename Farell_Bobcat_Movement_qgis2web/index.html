@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 831px;
+            height: 611px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/IndividualBobcatMovementData_1.js"></script>
+        <script src="data/VermontStateBoundry_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[43.94772693697397,-73.79967213857631],[44.722990575164296,-72.33343158930235]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_OpenStreetMap_0 = L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        function pop_IndividualBobcatMovementData_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LocID'] !== null ? Autolinker.link(String(feature.properties['LocID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cat'] !== null ? Autolinker.link(String(feature.properties['Cat'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Date_'] !== null ? Autolinker.link(String(feature.properties['Date_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Time_'] !== null ? Autolinker.link(String(feature.properties['Time_'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Datetime'] !== null ? Autolinker.link(String(feature.properties['Datetime'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? Autolinker.link(String(feature.properties['Latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Longitude'] !== null ? Autolinker.link(String(feature.properties['Longitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Northing'] !== null ? Autolinker.link(String(feature.properties['Northing'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Easting'] !== null ? Autolinker.link(String(feature.properties['Easting'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Long Zone'] !== null ? Autolinker.link(String(feature.properties['Long Zone'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IndividualBobcatMovementData_1_0(feature) {
+            switch(String(feature.properties['Cat'])) {
+                case 'B1':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,184,44,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B11':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(191,206,55,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B15':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(163,240,143,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B20':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(211,36,217,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B21':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(105,189,212,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B23':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,134,197,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B24':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(161,202,112,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B25D':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(102,152,216,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B27':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(85,216,105,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B29':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,118,222,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B30':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,43,221,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B32':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,29,20,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B37':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,142,82,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B4':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,31,97,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B41':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(38,216,127,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B42':
+                    return {
+                pane: 'pane_IndividualBobcatMovementData_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,206,184,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_IndividualBobcatMovementData_1');
+        map.getPane('pane_IndividualBobcatMovementData_1').style.zIndex = 401;
+        map.getPane('pane_IndividualBobcatMovementData_1').style['mix-blend-mode'] = 'normal';
+        var layer_IndividualBobcatMovementData_1 = new L.geoJson(json_IndividualBobcatMovementData_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_IndividualBobcatMovementData_1',
+            layerName: 'layer_IndividualBobcatMovementData_1',
+            pane: 'pane_IndividualBobcatMovementData_1',
+            onEachFeature: pop_IndividualBobcatMovementData_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_IndividualBobcatMovementData_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_IndividualBobcatMovementData_1);
+        map.addLayer(layer_IndividualBobcatMovementData_1);
+        function pop_VermontStateBoundry_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ShapeSTAre'] !== null ? Autolinker.link(String(feature.properties['ShapeSTAre'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ShapeSTLen'] !== null ? Autolinker.link(String(feature.properties['ShapeSTLen'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATEGEOID'] !== null ? Autolinker.link(String(feature.properties['STATEGEOID'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_VermontStateBoundry_2_0() {
+            return {
+                pane: 'pane_VermontStateBoundry_2',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_VermontStateBoundry_2');
+        map.getPane('pane_VermontStateBoundry_2').style.zIndex = 402;
+        map.getPane('pane_VermontStateBoundry_2').style['mix-blend-mode'] = 'normal';
+        var layer_VermontStateBoundry_2 = new L.geoJson(json_VermontStateBoundry_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_VermontStateBoundry_2',
+            layerName: 'layer_VermontStateBoundry_2',
+            pane: 'pane_VermontStateBoundry_2',
+            onEachFeature: pop_VermontStateBoundry_2,
+            style: style_VermontStateBoundry_2_0,
+        });
+        bounds_group.addLayer(layer_VermontStateBoundry_2);
+        map.addLayer(layer_VermontStateBoundry_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/VermontStateBoundry_2.png" /> Vermont State Boundry': layer_VermontStateBoundry_2,'Individual Bobcat Movement Data<br /><table><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B10.png" /></td><td>B1</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B111.png" /></td><td>B11</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B152.png" /></td><td>B15</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B203.png" /></td><td>B20</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B214.png" /></td><td>B21</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B235.png" /></td><td>B23</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B246.png" /></td><td>B24</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B25D7.png" /></td><td>B25D</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B278.png" /></td><td>B27</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B299.png" /></td><td>B29</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B3010.png" /></td><td>B30</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B3211.png" /></td><td>B32</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B3712.png" /></td><td>B37</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B413.png" /></td><td>B4</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B4114.png" /></td><td>B41</td></tr><tr><td style="text-align: center;"><img src="legend/IndividualBobcatMovementData_1_B4215.png" /></td><td>B42</td></tr></table>': layer_IndividualBobcatMovementData_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
